@@ -1,34 +1,58 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink
+} from "reactstrap";
 
-class NavMenu extends Component {
+class NavMenu extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
   render() {
     console.log(this.props);
     return (
-      <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/new">New Poem</Link>
-          </li>
-          <li>
-            <Link to="/gallery">Gallery</Link>
-          </li>
-          <li>
-            <Link to="/poem/123">Poem</Link>
-          </li>
-        </ul>
-      </div>
+      <Navbar color="light" light expand="md">
+        <NavbarBrand href="/">Newspaper Blackout</NavbarBrand>
+        <NavbarToggler onClick={this.toggle} />
+        <Collapse isOpen={this.state.isOpen} navbar>
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <NavLink href="/">home</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/about">About</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/new">New Poem</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/gallery">Gallery</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/poem/123">Poem</NavLink>
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
     );
   }
 }
 
 export default NavMenu;
 
-// 404 if No page
-//do links here to navigate
+//convert to a actual nav menu using reactstrap

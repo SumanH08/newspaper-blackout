@@ -1,11 +1,6 @@
-import React, { Component } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  Switch
-} from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Container } from "reactstrap";
 import HomePage from "./Components/HomePage.js";
 import AboutPage from "./Components/AboutPage.js";
 import GalleryPage from "./Components/GalleryPage.js";
@@ -14,21 +9,21 @@ import PoemPage from "./Components/PoemPage.js";
 import NavMenu from "./Components/NavMenu.js";
 import NotFoundPage from "./Components/NotFoundPage.js";
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <Router>
-        <div>
+        <Container>
           <NavMenu />
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route exact path="/about" component={AboutPage} />
-            <Route exact path="/gallery" component={GalleryPage} />
-            <Route exact path="/new" component={NewPoemPage} />
-            <Route exact path="/poem/:poem_id" component={PoemPage} />
+            <Route path="/about" component={AboutPage} />
+            <Route path="/gallery" component={GalleryPage} />
+            <Route path="/new" component={NewPoemPage} />
+            <Route path="/poem/:poem_id" component={PoemPage} />
             <Route component={NotFoundPage} />
           </Switch>
-        </div>
+        </Container>
       </Router>
     );
   }
