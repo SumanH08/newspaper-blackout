@@ -3,3 +3,7 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.blackout_text {
+  background-color: #f18973;
+}

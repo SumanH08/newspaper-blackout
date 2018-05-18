@@ -55,4 +55,5 @@ class NavMenu extends React.Component {
 
 export default NavMenu;
 
-//convert to a actual nav menu using reactstrap
+//structure of props, stores to listen to and components
+//design the DS of the text and the highlight

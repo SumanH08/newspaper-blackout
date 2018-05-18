@@ -1,0 +1,21 @@
+{
+  "poem": [
+    {
+      "text": "",
+      "blackout": [
+        { "st": 3, "ed": 7 },
+        { "st": 9, "ed": 11 },
+        { "st": 15, "ed": 17 }
+      ]
+    },
+    {
+      "text": "",
+      "blackout": [{ "st": 3, "ed": 7 }, { "st": 9, "ed": 17 }]
+    },
+    {
+      "text": "",
+      "blackout": [{ "st": 3, "ed": 7 }, { "st": 9, "ed": 17 }]
+    }
+  ],
+  "should_blackout": true
+}
