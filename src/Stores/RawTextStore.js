@@ -9,15 +9,25 @@ class RawTextStore extends Reflux.Store {
         {
           text:
             "I think night time is dark so you can imagine your fears with less distraction. I suppose if we couldn’t laugh at things that don’t make sense, we couldn’t react to a lot of life. Life is full of surprises, but never when you need one.",
-          blackout: [{ st: 3, ed: 7 }, { st: 9, ed: 11 }, { st: 15, ed: 17 }]
+          blackout_index: [
+            { st: 0, ed: 21 },
+            { st: 27, ed: 50 },
+            { st: 56, ed: 250 }
+          ]
         },
         {
-          text: "",
-          blackout: [{ st: 3, ed: 9 }, { st: 10, ed: 23 }]
+          text:
+            "I just have a command of thoroughly useless information. There's no problem so awful, that you can't add some guilt to it and make it even worse",
+          blackout_index: [{ st: 0, ed: 125 }, { st: 131, ed: 150 }]
         },
         {
-          text: "",
-          blackout: [{ st: 2, ed: 6 }, { st: 11, ed: 21 }]
+          text:
+            "I'm killing time while I wait for life to shower me with meaning and happiness.",
+          blackout_index: [
+            { st: 0, ed: 49 },
+            { st: 51, ed: 72 },
+            { st: 76, ed: 80 }
+          ]
         }
       ],
       should_blackout: true
