@@ -7,16 +7,17 @@ class Paragraph extends Reflux.Component {
   }
 
   render() {
-    var { text, number, blackout } = this.props;
+    var { text, blackout } = this.props;
     var string_arr = [],
       prev = 0;
     var indices = [];
 
+    //converting the position object into a single dimensional array
     blackout.forEach(function(position, j) {
       indices.push(position.st);
       indices.push(position.ed);
     });
-
+    //creating an array of sub_texts by splitting the raw text - using st and ed
     indices.forEach(function(index, k) {
       if (index !== 0) {
         string_arr.push(text.slice(prev, index));
@@ -44,6 +45,7 @@ class Paragraph extends Reflux.Component {
       return <span>{sliced_text}</span>;
     });
     return <p>{temp}</p>;
+    // return <p>{text}</p>;
   }
 }
 

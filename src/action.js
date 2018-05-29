@@ -1,5 +1,5 @@
 import Reflux from "reflux";
 
-var Actions = Reflux.createActions(["updatePoem"]);
+var Actions = Reflux.createActions(["saveRange"]);
 
 export default Actions;
