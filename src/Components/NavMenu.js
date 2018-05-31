@@ -24,7 +24,6 @@ class NavMenu extends React.Component {
     });
   }
   render() {
-    console.log(this.props);
     return (
       <Navbar color="light" light expand="md">
         <NavbarBrand href="/">Newspaper Blackout</NavbarBrand>

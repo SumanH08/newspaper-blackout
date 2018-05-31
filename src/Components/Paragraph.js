@@ -2,21 +2,25 @@ import React from "react";
 import Reflux from "reflux";
 
 class Paragraph extends Reflux.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     var { text, blackout } = this.props;
     var string_arr = [],
       prev = 0;
     var indices = [];
+    // handle empty and default behavior at the top - to avoid else and keep it simple
+    if (blackout.length === 0) {
+      return <p>{text}</p>;
+    }
 
-    //converting the position object into a single dimensional array
+    // converting the position object into a single dimensional array
     blackout.forEach(function(position, j) {
       indices.push(position.st);
       indices.push(position.ed);
     });
+
+    indices.sort((a, b) => a - b);
+    console.log(indices);
+
     //creating an array of sub_texts by splitting the raw text - using st and ed
     indices.forEach(function(index, k) {
       if (index !== 0) {
@@ -30,23 +34,32 @@ class Paragraph extends Reflux.Component {
       }
     });
 
+    console.log(string_arr);
+
     var temp = string_arr.map(function(sliced_text, l) {
-      if (blackout[0].st === 0) {
-        //black out alternative starting from 0
-        if (l === 0 || l % 2 === 0) {
-          return <span className="blackout_text">{sliced_text}</span>;
+      if (indices[0] === 0) {
+        if (l % 2 === 0) {
+          return (
+            <em key={l} className="blackout_text">
+              {sliced_text}
+            </em>
+          );
         }
-      } else {
-        //blackout alternative starting from 1
-        if (l === 1 || l % 2 !== 0) {
-          return <span className="blackout_text">{sliced_text}</span>;
-        }
+      } else if (l % 2 !== 0) {
+        return (
+          <em key={l} className="blackout_text">
+            {sliced_text}
+          </em>
+        );
       }
-      return <span>{sliced_text}</span>;
+      return <em key={l}>{sliced_text}</em>;
     });
+    // return { temp };  syntax to return an obj with value "temp" AND key also "temp"
     return <p>{temp}</p>;
-    // return <p>{text}</p>;
   }
 }
 
 export default Paragraph;
+
+//1. No more temps
+//2. Clean up code that you dont need before committing

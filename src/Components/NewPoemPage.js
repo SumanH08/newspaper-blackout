@@ -8,48 +8,50 @@ import Actions from "./../action.js";
 class NewPoemPage extends Reflux.Component {
   constructor(props) {
     super(props);
-    this.state = { blackout_var: "" };
     this.store = RawTextStore;
     this.mouseup = this.mouseup.bind(this);
   }
 
-  blackout = () => {
-    console.log(window.getSelection().getRangeAt(0));
-    console.log(window.getSelection().getRangeAt(0).startOffset);
-    console.log(window.getSelection().getRangeAt(0).endOffset);
-  };
-
   mouseup = () => {
     console.log("Calling mouse up");
-    console.log(window.getSelection().getRangeAt(0));
-    console.log(window.getSelection().getRangeAt(0).startOffset);
-    console.log(window.getSelection().getRangeAt(0).endOffset);
-
+    // var userSelection = window.getSelection();
+    // var start = [],
+    //   end = [];
+    // for (let i = 0; i < userSelection.rangeCount; ++i) {
+    //   start.push(userSelection.getRangeAt(i).startOffset);
+    //   end.push(userSelection.getRangeAt(i).endOffset);
+    // }
+    // console.log(window.getSelection().getRangeAt(0));
+    // console.log(window.getSelection().rangeCount);
     var startOffset = window.getSelection().getRangeAt(0).startOffset;
     var endOffset = window.getSelection().getRangeAt(0).endOffset;
+    console.log(startOffset, endOffset);
     Actions.saveRange(startOffset, endOffset);
   };
   //take text, paragraph #(object key index), blackout_index as 3 props
   render() {
+    console.log("Rendering");
+    console.log(this.state.poem);
     var display_text = this.state.poem.map(function(item, i) {
       return (
-        <p>{item.text}</p>
-        // <Paragraph text={item.text} number={i} blackout={item.blackout_index} />
+        <Paragraph
+          key={i}
+          text={item.text}
+          number={i}
+          blackout={item.blackout_index}
+        />
       );
     });
     return (
       <div>
         <ButtonGroup>
-          <Button onClick={this.blackout}>Select</Button>
+          <Button>Select</Button>
           <Button>Erase</Button>
         </ButtonGroup>
-        <p onMouseUp={this.mouseup}>{display_text}</p>
+        <div onMouseUp={this.mouseup}>{display_text}</div>
       </div>
     );
   }
 }
 
 export default NewPoemPage;
-
-//I can use surroundContents(element) to blacken the selected text
-// <p id="temp">{display_text}</p>
