@@ -13,7 +13,7 @@ class NewPoemPage extends Reflux.Component {
   }
 
   onTextHighlightedCallback = range => {
-    Actions.saveRange(range.start, range.end, range.text, range.data);
+    Actions.saveRange(range);
   };
 
   onMouseOverHighlightedWordCallback = range => {};
@@ -21,15 +21,15 @@ class NewPoemPage extends Reflux.Component {
   render() {
     console.log("Rendering");
     var self = this;
-    // ranges = this.state.poem[0].blackout_index;
-
     var display_text = this.state.poem.map(function(item, i) {
+      const indexStr = JSON.stringify(item.blackout_index);
       console.log("Printing ranges here");
       console.log(item.blackout_index);
       return (
         <Highlightable
-          ranges={item.blackout_index}
+          ranges={JSON.parse(indexStr)}
           key={i}
+          id={i.toString()}
           enabled={true}
           onTextHighlighted={self.onTextHighlightedCallback}
           highlightStyle={{

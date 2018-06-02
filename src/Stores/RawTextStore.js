@@ -18,14 +18,9 @@ class RawTextStore extends Reflux.Store {
   }
 
   // { startOffset, endOffset }
-  onSaveRange(startOffset, endOffset, text, data) {
+  onSaveRange(range) {
     var newPoem = this.state.poem;
-    newPoem[0].blackout_index.push({
-      start: startOffset,
-      end: endOffset,
-      text: text,
-      data: data
-    });
+    newPoem[0].blackout_index.push(range);
     this.setState({ poem: newPoem });
   }
 }
