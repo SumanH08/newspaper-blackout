@@ -14,13 +14,27 @@ class RawTextStore extends Reflux.Store {
       ],
       should_blackout: true
     };
-    this.listenTo(Actions.saveRange, this.onSaveRange);
+    this.listenables = Actions;
+    // this.listenTo(Actions.saveRange, this.onSaveRange);
+    // this.listenTo(Actions.removeRange, this.onRemoveRange);
   }
 
   // { startOffset, endOffset }
   onSaveRange(range) {
     var newPoem = this.state.poem;
     newPoem[0].blackout_index.push(range);
+    this.setState({ poem: newPoem });
+  }
+
+  onRemoveRange(range) {
+    var newPoem = this.state.poem;
+    var blackout = newPoem[0].blackout_index;
+
+    blackout = blackout.filter(out => {
+      return !(out.start == range.start && out.end == range.end);
+    });
+
+    newPoem[0].blackout_index = blackout; //.push(range);
     this.setState({ poem: newPoem });
   }
 }
